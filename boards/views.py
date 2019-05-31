@@ -22,7 +22,7 @@ class BoardListView(ListView):
     template_name = 'home.html'
 
 
-
+@login_required
 def board_topics(request, pk):
     board = get_object_or_404(Board, pk=pk)
     queryset = board.topics.order_by('-last_updated').annotate(replies=Count('posts') - 1)
@@ -63,6 +63,7 @@ def new_topic(request, pk):
     return render(request, 'new_topic.html', {'board': board, 'form': form})
 
 
+@login_required
 def topic_posts(request, pk, topic_pk):
     topic = get_object_or_404(Topic, board__pk=pk, pk=topic_pk)
     topic.views += 1
@@ -116,6 +117,7 @@ class PostUpdateView(UpdateView):
         post.save()
         return redirect('topic_posts', pk=post.topic.board.pk, topic_pk=post.topic.pk)
 
+
 class PostListView(ListView):
     model = Post
     context_object_name = 'posts'
@@ -136,6 +138,7 @@ class PostListView(ListView):
         self.topic = get_object_or_404(Topic, board__pk=self.kwargs.get('pk'), pk=self.kwargs.get('topic_pk'))
         queryset = self.topic.posts.order_by('created_at')
         return queryset
+
 
 class TopicListView(ListView):
     model = Topic
