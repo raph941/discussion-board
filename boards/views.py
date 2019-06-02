@@ -117,7 +117,7 @@ class PostUpdateView(UpdateView):
         post.save()
         return redirect('topic_posts', pk=post.topic.board.pk, topic_pk=post.topic.pk)
 
-
+@method_decorator(login_required, name='dispatch')
 class PostListView(ListView):
     model = Post
     context_object_name = 'posts'
@@ -139,7 +139,7 @@ class PostListView(ListView):
         queryset = self.topic.posts.order_by('created_at')
         return queryset
 
-
+@method_decorator(login_required, name='dispatch')
 class TopicListView(ListView):
     model = Topic
     context_object_name = 'topics'
