@@ -18,9 +18,9 @@
 
 
 {% if user.is_authenticated %}
-<ul class="navbar-nav ml-auto">
+<ul class="navbar-nav ml-auto" style="display: inline-block;float: right;">
     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle col-3" id="userMenu" style="color: white; " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle col-3" id="userMenu" style="color: white; display:inline;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{ user.username }}
         </a>
         <div class="dropdown-menu " aria-labelledby="userMenu">
