@@ -25,6 +25,7 @@ class BoardListView(ListView):
 @login_required
 def board_topics(request, pk):
     board = get_object_or_404(Board, pk=pk)
+    
     queryset = board.topics.order_by('-last_updated').annotate(replies=Count('posts') - 1)
     page = request.GET.get('page', 1)
 
@@ -36,7 +37,7 @@ def board_topics(request, pk):
         # goes to the first page if input is not an int
         topics = paginator.page(1)
     except EmptyPage:
-        #example when a user tries to add a page number in the usrl, that is not among the valid number of pages it falls back to the last page
+        #example when a user tries to add a page number in the url, that is not among the valid number of pages it falls back to the last page
         topics = paginator.page(paginator.num_pages) 
     
     return render(request, 'topics.html', {'board': board, 'topics': topics})
@@ -145,7 +146,7 @@ class TopicListView(ListView):
     context_object_name = 'topics'
     template_name = 'topics.html'
     paginate_by = 20
-
+    
     def get_context_data(self, **kwargs):
         kwargs['board'] = self.board
         return super().get_context_data(**kwargs)
