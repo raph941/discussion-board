@@ -1,0 +1,32 @@
+{% load static %}<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Demo</title>
+  <link href="https://fonts.googleapis.com/css?family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/1.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+</head>
+<body>
+<div class="container"> 
+  <div class="type-js headline">
+    <h1 class="text-js">Hello stranger......... This is a dicussion app common check it out</h1>
+  </div>
+
+  <span>
+    <a href="{% url 'home' %}" class="button">
+      <button class="btn btn-outline-primary " >Start Discussion</button>
+    </a>
+  </span>
+
+</div>
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src='{% static 'js/1.js' %}'></script>
+</body>
+
+</html>
+
+
+
+

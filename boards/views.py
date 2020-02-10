@@ -16,6 +16,9 @@ from .forms import NewTopicForm, PostForm
 from .models import Board, Post, Topic
 
 
+def LandingPageView(request):
+    return render(request, '1.html')
+
 class BoardListView(ListView):
     model = Board
     context_object_name = 'boards'
