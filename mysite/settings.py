@@ -30,7 +30,6 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 #i.e the hosts that would be able to deploy this app.
 ALLOWED_HOSTS = config('ALLOWED_HOST', cast=Csv())
 
-
 # Application definition
 
 INSTALLED_APPS = [
